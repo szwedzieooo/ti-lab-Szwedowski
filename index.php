@@ -1,6 +1,14 @@
 <?php
 $firma = 'Szprycha';
 $rok = date('Y');
+
+$cennik = [
+    ['nazwa' => 'Przegląd podstawowy', 'cena' => 120],
+    ['nazwa' => 'Przegląd generalny', 'cena' => 250],
+    ['nazwa' => 'Regulacja przerzutek (przód + tył)', 'cena' => 40],
+    ['nazwa' => 'Regulacja hamulców', 'cena' => 30],
+    ['nazwa' => 'Centrowanie koła', 'cena' => 40],
+];
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -54,30 +62,12 @@ $rok = date('Y');
                     </tr>
                 </thead>
                 <tbody>
+                <?php foreach ($cennik as $usluga): ?>
                     <tr>
-                        <td>Przegląd podstawowy (regulacje, smarowanie, sprawdzenie śrub)</td>
-                        <td>120 zł</td>
+                        <td><?= htmlspecialchars($usluga['nazwa']) ?></td>
+                        <td><?= $usluga['cena'] ?> zł</td>
                     </tr>
-                    <tr>
-                        <td>Przegląd generalny (rozebranie, mycie i smarowanie całego roweru)</td>
-                        <td>250 zł</td>
-                    </tr>
-                    <tr>
-                        <td>Regulacja przerzutek (przód + tył)</td>
-                        <td>40 zł</td>
-                    </tr>
-                    <tr>
-                        <td>Regulacja hamulców</td>
-                        <td>30 zł</td>
-                    </tr>
-                    <tr>
-                        <td>Centrowanie koła</td>
-                        <td>od 40 zł</td>
-                    </tr>
-                    <tr>
-                        <td>Wymiana dętki lub opony</td>
-                        <td>25 zł</td>
-                    </tr>
+                <?php endforeach; ?>
                 </tbody>
             </table>
             <p><small>* Ceny dotyczą samej robocizny i nie obejmują kosztu części zamiennych.</small></p>
