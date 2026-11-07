@@ -1,11 +1,12 @@
 <?php
 $firma = 'Szprycha';
 $rok = date('Y');
+$imie = $_GET['imie'] ?? 'Gościu';
 
 $cennik = [
     ['nazwa' => 'Przegląd podstawowy', 'cena' => 120],
     ['nazwa' => 'Przegląd generalny', 'cena' => 250],
-    ['nazwa' => 'Regulacja przerzutek (przód + tył)', 'cena' => 40],
+    ['nazwa' => 'Regulacja przerzutek', 'cena' => 40],
     ['nazwa' => 'Regulacja hamulców', 'cena' => 30],
     ['nazwa' => 'Centrowanie koła', 'cena' => 40],
 ];
@@ -25,7 +26,8 @@ $cennik = [
     <header>
         <h1>Szprycha</h1>
         <p>Lokalna pracownia rowerowa – serwis i naprawa</p>
-        
+        <p class="powitanie">Cześć, <?= htmlspecialchars($imie) ?>!</p>
+
         <!-- 2. Przycisk .menu-toggle przed nav -->
         <button class="menu-toggle" aria-expanded="false">Menu</button>
 
@@ -70,6 +72,21 @@ $cennik = [
                 <?php endforeach; ?>
                 </tbody>
             </table>
+            <h3>Wykres cen (SVG)</h3>
+            <svg viewBox="0 0 350 <?= count($cennik) * 35 ?>" width="100%" height="<?= count($cennik) * 35 ?>" role="img" aria-label="Wykres cen usług">
+                <?php foreach ($cennik as $i => $usluga): ?>
+                    <!-- Nazwa usługi -->
+                    <text x="0" y="<?= $i * 35 + 16 ?>" font-size="12" fill="currentColor">
+                        <?= htmlspecialchars($usluga['nazwa']) ?>
+                    </text>
+                    <!-- Słupek ceny (proporcjonalny do kwoty) -->
+                    <rect x="150" y="<?= $i * 35 + 4 ?>" width="<?= $usluga['cena'] ?>" height="16" fill="var(--accent, #ea580c)" rx="3" />
+                    <!-- Wartość kwotowa na końcu słupka -->
+                    <text x="<?= 155 + $usluga['cena'] ?>" y="<?= $i * 35 + 16 ?>" font-size="11" fill="currentColor" font-weight="bold">
+                        <?= $usluga['cena'] ?> zł
+                    </text>
+                <?php endforeach; ?>
+            </svg>
             <p><small>* Ceny dotyczą samej robocizny i nie obejmują kosztu części zamiennych.</small></p>
         </section>
 
