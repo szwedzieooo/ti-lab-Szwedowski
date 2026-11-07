@@ -212,6 +212,7 @@ footer {
     font-size: 0.9rem;
 }
 
+
 /* === 8. DOPASOWANIE DO KOMPUTERÓW === */
 @media (min-width: 600px) {
     header {
@@ -224,5 +225,45 @@ footer {
 
     section {
         padding: 2rem;
+    }
+}
+/* === MENU MOBILNE (ZADANIE 1) === */
+.menu-toggle {
+    display: none; /* Domyślnie na komputerze przycisk jest ukryty */
+    background-color: var(--accent);
+    color: #ffffff;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    margin: 0 auto 0.5rem;
+}
+
+@media (max-width: 600px) {
+    /* Na telefonie (poniżej 600px) pokazujemy przycisk */
+    .menu-toggle {
+        display: inline-block;
+    }
+
+    /* Domyślnie chowamy menu na telefonie */
+    .menu {
+        display: none;
+        margin-top: 0.75rem;
+    }
+
+    /* Pokazujemy menu po dodaniu klasy przez JavaScript */
+    .menu.menu--open {
+        display: block;
+    }
+
+    .menu ul {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .menu a {
+        display: block;
     }
 }

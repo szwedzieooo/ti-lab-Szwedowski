@@ -4,15 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Szprycha – Pracownia Rowerowa</title>
-    <!-- Podłączenie osobnego pliku CSS -->
     <link rel="stylesheet" href="style.css">
+    <!-- 1. Podpięty skrypt z atrybutem defer -->
+    <script src="app.js" defer></script>
 </head>
 <body>
 
     <header>
         <h1>Szprycha</h1>
         <p>Lokalna pracownia rowerowa – serwis i naprawa</p>
-        <nav>
+        
+        <!-- 2. Przycisk .menu-toggle przed nav -->
+        <button class="menu-toggle" aria-expanded="false">Menu</button>
+
+        <!-- 3. Dodana klasa .menu -->
+        <nav class="menu">
             <ul>
                 <li><a href="#oferta">Oferta</a></li>
                 <li><a href="#cennik">Cennik</a></li>
